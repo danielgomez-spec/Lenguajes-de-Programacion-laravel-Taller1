@@ -7,19 +7,10 @@
 </head>
 <body>
 
-    <div class="container mt-4">
-        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-dark rounded-5 shadow-sm"
-            style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-            <li class="nav-item">
-                <a class="nav-link active rounded-5" href="{{ route('proyecto.index') }}">Listado de Proyectos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="/">Hello World</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="{{ route('proyecto.create') }}">Nuevo Proyecto</a>
-            </li>
-        </ul>
+    <div class="container mt-4 d-flex gap-2">
+        <a href="{{ route('proyecto.index') }}" class="btn btn-dark">Listado de Proyectos</a>
+        <a href="/" class="btn btn-outline-dark">Inicio</a>
+        <a href="/proyecto/create" class="btn btn-outline-dark">Nuevo Proyecto</a>
     </div>
 
     <div class="container mt-5">
@@ -29,32 +20,49 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Fecha de creación</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Proyecto</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Fecha creación</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($proyectos as $proyecto)
                     <tr>
-                        <td>{{ $proyecto->id }}</td>
+                        <th scope="row">{{ $proyecto->id }}</th>
                         <td>{{ $proyecto->nombre }}</td>
                         <td>{{ $proyecto->descripcion }}</td>
                         <td>{{ $proyecto->created_at->format('d/m/Y H:i') }}</td>
-                        <td> <a href="{{ route('proyecto.edit', $proyecto->id) }}" class="btn btn-warning btn-sm">Editar</a></td>
+                        <td>
+                            <form action="{{ route('proyecto.edit', $proyecto->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('GET')
+                                <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                            </form>
+
+                            <form action="{{ route('proyecto.destroy', $proyecto->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este proyecto?')">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center">No hay proyectos registrados aún.</td>
+                        <td colspan="5" class="text-center">No hay proyectos registrados aún.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

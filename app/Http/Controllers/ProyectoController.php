@@ -49,5 +49,10 @@ class ProyectoController extends Controller
     return redirect()->route('proyecto.index')->with('success', 'Proyecto actualizado correctamente.');
     }
     public function destroy(string $id)
-    {}
+    {
+        $proyecto = Proyecto::find($id);
+        $proyecto->delete();
+        return redirect('project/')
+        ->with('success','Proyecto eliminado satisfactoriamente.');
+    }
 }

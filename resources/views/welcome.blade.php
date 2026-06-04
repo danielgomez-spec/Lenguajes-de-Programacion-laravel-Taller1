@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mi Proyecto</title>
+    <title>Bienvenido</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container mt-4">
-        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-dark rounded-5 shadow-sm"
-            style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="{{ route('proyecto.index') }}">Listado de Proyectos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active rounded-5" href="/">Hello World</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="{{ route('proyecto.create') }}">Nuevo Proyecto</a>
-            </li>
-        </ul>
+    <div class="text-center text-dark">
+
+        <h1 class="mb-2 fw-bold">¡Bienvenido!</h1>
+        <p class="mb-4 fs-5 text-secondary">Sistema de Gestión de Proyectos</p>
+
+        <img src="{{ asset('images/intro.png') }}" 
+             alt="Bienvenida" 
+             class="img-fluid mb-5 rounded shadow"
+             style="max-width: 500px;">
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/proyecto/create" class="btn btn-dark btn-lg px-4">
+                 Registrar Nuevo Proyecto
+            </a>
+            <a href="{{ route('proyecto.index') }}" class="btn btn-outline-dark btn-lg px-4">
+                 Ver Proyectos
+            </a>
+        </div>
+
     </div>
 
-    <div class="container mt-5">
-        <h1>¡Hola Mundo!</h1>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

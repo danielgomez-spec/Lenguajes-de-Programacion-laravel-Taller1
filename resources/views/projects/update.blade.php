@@ -8,19 +8,10 @@
 </head>
 <body>
 
-    <div class="container mt-4">
-        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-dark rounded-5 shadow-sm"
-            style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="{{ route('proyecto.index') }}">Listado de Proyectos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="/">Hello World</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-5" href="{{ route('proyecto.create') }}">Nuevo Proyecto</a>
-            </li>
-        </ul>
+    <div class="container mt-4 d-flex gap-2">
+        <a href="{{ route('proyecto.index') }}" class="btn btn-outline-dark">Listado de Proyectos</a>
+        <a href="/" class="btn btn-outline-dark">Inicio</a>
+        <a href="/proyecto/create" class="btn btn-outline-dark">Nuevo Proyecto</a>
     </div>
 
     <div class="container text-center mt-5">
@@ -54,5 +45,6 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
